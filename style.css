@@ -1,0 +1,220 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ Main / Index ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+nav {
+    border-bottom: 2px solid black;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #FEFAE0;
+}
+
+.navbar {
+    background-color: #A8B090;
+}
+
+.nav-item {
+    padding: 10px 10px;
+}
+
+.form-control {
+    margin-right: 5px;
+}
+
+.div-body {
+    background-color: #caf0f8;
+    display: flex;
+}
+
+#footer {
+    border-top: 2px solid black;
+    color: white;
+    line-height: 35px;
+    margin-top: auto;
+    width: 100%;
+    background-color: #A8B090;
+}
+
+#footer-text {
+    padding: 10px;
+    background-color: #A8B090;
+    text-align: center;
+}
+
+#map {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+    height: auto;
+    background-color: #caf0f8;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ Summary ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#container-sum h1,
+#container-sum h2 {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#container-sum p {
+    color: gray;
+    margin: 15px;
+}
+
+#container-sum h1 {
+    text-align: center;
+}
+
+.img-container-hr {
+    width: 85vw;
+    height: 2px;
+    background-color: black;
+}
+
+#container-sum {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.img-container p {
+    text-align: center;
+}
+
+.overlay-title {
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ Login ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.login-body {
+    background-color: #F2F3E6;
+}
+
+.cust-container {
+    height: 85vh;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cust-col {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#p-text-center {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ State ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#content {
+    width: 80vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+#content>hr {
+    width: 95%;
+    background-color: black;
+    height: 1px;
+}
+
+#state-container {
+    gap: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: small;
+    display: flex;
+}
+
+#state-flag {
+    width: 400px;
+    height: auto;
+}
+
+#state-div {
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.post-container {
+    border: 2px solid black;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+
+.post-header span {
+    font-weight: bold;
+}
+
+.post-body {
+    display: flex;
+    padding: 10px;
+}
+
+.post-body img {
+    max-height: 300px;
+    margin-right: 20px;
+}
+
+.post-description {
+    flex-grow: 1;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.post-description p {
+    margin: 0;
+}
+
+#upload-button {
+    justify-content: center;
+    width: 30vw;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.todo-remove {
+    cursor: pointer;
+    color: orange;
+}
+
+.todo-remove:hover {
+    color: red;
+}
+
+.todo-remove:active {
+    color: black;
+}
