@@ -13,10 +13,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="main.html"><strong>US'Agram</strong></a>
+          <a class="navbar-brand" href="main.php"><strong>US'Agram</strong></a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" id="nav-about" href="about.html">About</a>
+              <a class="nav-link" id="nav-about" href="about.php">About</a>
             </li>
             <li class="nav-item">
               <form class="form-inline" id="search-form">
@@ -25,7 +25,7 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="nav-login" href="login.html">Login</a>
+              <a class="nav-link" id="nav-login" href="login.php">Login</a>
             </li>
           </ul>
         </div>
@@ -83,7 +83,7 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         const state = document.querySelector('#search-term').value.trim().replace(/_/g, " ");
 
-        const goToUrl = 'state.html?state=' + state;
+        const goToUrl = 'state.php?state=' + state;
         console.log(goToUrl);
         window.location.href = goToUrl;
     });

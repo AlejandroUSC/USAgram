@@ -1,3 +1,8 @@
+<?php 
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,10 +22,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="main.html"><strong>US'Agram</strong></a>
+          <a class="navbar-brand" href="main.php"><strong>US'Agram</strong></a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" id="nav-about" href="about.html">About</a>
+              <a class="nav-link" id="nav-about" href="about.php">About</a>
             </li>
             <li class="nav-item">
               <form class="form-inline" id="search-form">
@@ -29,7 +34,7 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="nav-login" href="login.html">Login</a>
+              <a class="nav-link" id="nav-login" href="login.php">Login</a>
             </li>
           </ul>
         </div>
@@ -43,7 +48,7 @@
 
         <div id="state-container">
             <div id="state-img">
-                <img id="state-flag" src="usr_img/temp.png" alt="State flag">
+                <img id="state-flag" src="usr_img/loading.jpeg" alt="State flag">
             </div>
             <div id="state-desc">
                 <p></p>
@@ -149,7 +154,7 @@
                 </div>
                 <div class="modal-body">
                     <p>You need to login inorder to share your memories!</p>
-                    <a href="login.html" class="btn btn-primary">Register or Login now!</a>
+                    <a href="login.php" class="btn btn-primary">Register or Login now!</a>
                 </div>
             </div>
         </div>
@@ -166,8 +171,8 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="state_insert.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/state_insert.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
