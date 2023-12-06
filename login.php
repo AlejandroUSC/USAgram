@@ -1,3 +1,45 @@
+<?php
+require "config/config.php";
+
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+    header('Location: main.php');
+} else {
+    if (isset($_POST['log_email']) && isset($_POST['log_pass'])) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+        if ($mysqli->connect_errno) {
+            echo $mysqli->connect_error;
+            exit();
+        }
+
+        $email = $mysqli->escape_string($_POST['log_email']);
+        $pass = hash('sha256', $mysqli->escape_string($_POST['log_pass']));
+
+        $sqlSelect = "SELECT * FROM user WHERE email = '$email' AND password = '$pass';";
+
+        $result = $mysqli->query($sqlSelect);
+
+        if (!$result) {
+            echo $mysqli->error;
+            $mysqli->close();
+            exit();
+        }
+        $mysqli->close();
+
+        if ($result->num_rows == 1) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['email'] = $_POST['log_email'];
+            header('Location: main.php');
+            echo ('logged in');
+        } else {
+            $error = "Invalid Email or Password.";
+        }
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,25 +59,8 @@
 
 <body class="login-body">
 
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand" href="main.php"><strong>US'Agram</strong></a>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" id="nav-about" href="about.php">About</a>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline" id="search-form">
-                <input type="text" class="form-control" id="search-term" placeholder="Search...">
-                <button class="btn btn-outline-primary" id="search-button" type="submit">Search</button>
-              </form>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-login" href="login.php">Login</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <?php include 'nav.php'; ?>
+
 
     <div class="container cust-container">
         <div class="row">
@@ -43,18 +68,21 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center">Login to Your Account</h3>
-                        <form id="login-form">
+                        <form action="login.php" id="login-form" method="POST">
+                            <div class="font-italic text-danger">
+                                <?php if (!empty($error)) echo $error; ?>
+                            </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                <input type="email" class="form-control" name="log_email" id="email" placeholder="Enter email" required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with
                                     anyone.</small>
-                                <small id="firstname-error" class="form-text text-danger"></small>
+                                <small id="email-error" class="form-text text-danger"></small>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password"
-                                    required>
+                                <input type="password" class="form-control" name="log_pass" id="password" placeholder="Password" required>
+                                <small id="pass-error" class="form-text text-danger"></small>
                             </div>
                             <button type="submit" class="btn btn-primary  mx-auto d-block">Login</button>
                             <p class="text-center" id="p-text-center">Don't have an account?
@@ -77,24 +105,26 @@
                     </button>
                 </div>
                 <div class="modal-body p-4">
-                    <form>
+                    <form action="register_confirm.php" method="POST" id="reg-form">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-fname">First Name</label>
-                            <input type="text" id="reg-fname" class="form-control" placeholder="John" required>
+                            <input type="text" id="reg-fname" name="fname" class="form-control" placeholder="John" required>
+                            <small id="reg-fn-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-lname">Last Name</label>
-                            <input type="text" id="reg-lname" class="form-control" placeholder="Smith" required>
+                            <input type="text" id="reg-lname" name="lname" class="form-control" placeholder="Smith" required>
+                            <small id="reg-ln-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-email">Email address</label>
-                            <input type="email" id="reg-email" class="form-control" placeholder="jsmith@gmail.com"
-                                required>
+                            <input type="email" id="reg-email" name="remail" class="form-control" placeholder="jsmith@gmail.com" required>
+                            <small id="reg-email-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-password">Password</label>
-                            <input type="text" id="reg-password" class="form-control" placeholder="*******"
-                                required>
+                            <input type="password" id="reg-password" name="rpass" class="form-control" placeholder="*******" required>
+                            <small id="reg-pass-error" class="form-text text-danger"></small>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -111,7 +141,7 @@
                 © 2023 Alejandro Martinez
             </div>
         </div>
-    </div> 
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

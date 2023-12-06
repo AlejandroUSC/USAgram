@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 ?>
@@ -20,25 +20,7 @@
 <!-- https://mdbootstrap.com/docs/standard/extended/modal-form/#example1 -->
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand" href="main.php"><strong>US'Agram</strong></a>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" id="nav-about" href="about.php">About</a>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline" id="search-form">
-                <input type="text" class="form-control" id="search-term" placeholder="Search...">
-                <button class="btn btn-outline-primary" id="search-button" type="submit">Search</button>
-              </form>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-login" href="login.php">Login</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <?php include 'nav.php'; ?>
 
     <div id="content">
 
@@ -109,8 +91,7 @@
         + Add a Memory +
     </button>
 
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,8 +102,7 @@
                     <form id="upload-form">
                         <div class="upload-form-group">
                             <label for="picture-upload">Select image to upload</label>
-                            <input type="file" class="form-control" id="picture-upload"
-                                accept="image/png, image/jpeg, image/jpg" required>
+                            <input type="file" class="form-control" id="picture-upload" accept="image/png, image/jpeg, image/jpg" required>
                         </div>
                         <div class="upload-form-group">
                             <label for="location">What city was this picture taken in?</label>
@@ -134,8 +114,7 @@
                         </div>
                         <div class="upload-form-group">
                             <label for="description">Description (300 characters or less)</label>
-                            <textarea class="form-control" id="description" rows="3" maxlength="300"
-                                required></textarea>
+                            <textarea class="form-control" id="description" rows="3" maxlength="300" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>
@@ -144,8 +123,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="loginModel"
-        aria-hidden="true">
+    <div class="modal fade" id="loginRegisterModal" tabindex="-1" role="dialog" aria-labelledby="loginModel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
