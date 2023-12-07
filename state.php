@@ -10,25 +10,26 @@ $mysqli->set_charset('utf8');
 require "yield.php"; // Displays submissions
 
 // Below will create and post a submission
-$em = $_SESSION['email'];
-$emailSQL = "SELECT * FROM `user` WHERE email = '$em';";
-$person = $mysqli->query($emailSQL);
-$personData = $person->fetch_assoc();
-$userID = $personData['id'];
+
 
 if (empty($_FILES["image_up"])) {
     $error = "No file uploaded";
 } else if ($_FILES["image_up"]['error'] > 0) {
     $error = "File uploaded error " . $_FILES["image_up"]['error'];
 } else {
+    $em = $_SESSION['email'];
+    $emailSQL = "SELECT * FROM `user` WHERE email = '$em';";
+    $person = $mysqli->query($emailSQL);
+    $personData = $person->fetch_assoc();
+    $userID = $personData['id'];
+
     $src = $_FILES['image_up']['tmp_name'];
     $imgurl = $_FILES['image_up']['name'];
     $dst = "usr_img/" . uniqid() . $imgurl;
     $dst = preg_replace('/\s/', '_', $dst);
 
     move_uploaded_file($src, $dst);
-}
-if (isset($_POST['city'])) {
+
     $city = $_POST['city'];
 
     $sqlFindCity = "SELECT * FROM city WHERE name = '$city' AND state_id = '$stateNum';";
@@ -58,10 +59,12 @@ if (isset($_POST['city'])) {
     $mysqli->query($insertSub);
     header("Refresh:0");
 }
+if (isset($_POST['city'])) {
+}
 $mysqli->close();
 
 // POST CALL FOR DELETING SUBMISSIONS
-if(isset($_POST['submissionID']) && trim($_POST['submissionID']) != ""){
+if (isset($_POST['submissionID']) && trim($_POST['submissionID']) != "") {
     $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $submissionID = $_POST['submissionID'];
     $sqlDel = "DELETE FROM submission WHERE submission.id = " . $submissionID . ";";
@@ -224,7 +227,7 @@ if(isset($_POST['submissionID']) && trim($_POST['submissionID']) != ""){
         $(document).ready(function() {
             $(".del-button").on("click", function() {
                 var submissionID = $(this).data("submission-id");
-                console.log("in ajax: " . submissionID);
+                console.log("in ajax: ".submissionID);
                 // Perform the AJAX request
                 $.ajax({
                     type: "POST",

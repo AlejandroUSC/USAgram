@@ -8,7 +8,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
 } else {
     if (isset($_POST['log_email']) && isset($_POST['log_pass'])) {
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        echo 'here';
+
         if ($mysqli->connect_errno) {
             echo $mysqli->connect_error;
             exit();
@@ -20,7 +20,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         $sqlSelect = "SELECT * FROM user WHERE email = '$email' AND password = '$pass';";
 
         $result = $mysqli->query($sqlSelect);
-        echo 'here2';
+
         if (!$result) {
             echo $mysqli->error;
             $mysqli->close();
@@ -37,7 +37,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         } else {
             $error = "Invalid Email or Password.";
         }
-        echo 'here3';
+
     }
 }
 
