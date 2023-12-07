@@ -67,8 +67,5 @@ if (!$submissionResult) {
 ?>
 <!-- 
 function delSub($i){
-    $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    $mysqli2->query("DELETE FROM submission WHERE submission.id = " . $i . ";");
-    header("Refresh:0");
-    $mysqli2->close();
+    
 } -->
