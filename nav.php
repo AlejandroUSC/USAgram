@@ -7,7 +7,7 @@
             </li>
             <li class="nav-item">
                 <form class="form-inline" id="search-form">
-                    <input type="text" class="form-control" id="search-term" placeholder="Search...">
+                    <input type="text" class="form-control" id="search-term" placeholder="Search State...">
                     <button class="btn btn-outline-primary" id="search-button" type="submit">Search</button>
                 </form>
             </li>

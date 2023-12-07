@@ -1,21 +1,23 @@
 <?php
 require "config/config.php";
-
-if (isset($_GET['state'])) {
-    $currentState = $_GET['state'];
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($mysqli->connect_errno) {
+    echo $mysqli->connect_error;
+    exit();
 }
-if (isset($_GET['page'])) {
-    $currentPage = $_GET['page'];
-}
-$encodedState = urlencode($currentState);
-$encodedState = str_replace('+', '_', $encodedState);
+$mysqli->set_charset('utf8');
 
-// Generating the URL with the encoded values
-$url = 'state.php?state=' . $encodedState . '&page=' . $encodedPage;
-// var_dump($_FILES);
-if(empty($_FILES["image_up"])) {
+require "yield.php";
+
+$em = $_SESSION['email'];
+$emailSQL = "SELECT * FROM `user` WHERE email = '$em';";
+$person = $mysqli->query($emailSQL);
+$personData = $person->fetch_assoc();
+$userID = $personData['id'];
+
+if (empty($_FILES["image_up"])) {
     $error = "No file uploaded";
-} else if($_FILES["image_up"]['error'] > 0) {
+} else if ($_FILES["image_up"]['error'] > 0) {
     $error = "File uploaded error " . $_FILES["image_up"]['error'];
 } else {
     $src = $_FILES['image_up']['tmp_name'];
@@ -25,9 +27,44 @@ if(empty($_FILES["image_up"])) {
 
     move_uploaded_file($src, $dst);
 }
+if (isset($_POST['city'])) {
+    $city = $_POST['city'];
 
+    $sqlFindCity = "SELECT * FROM city WHERE name = '$city' AND state_id = '$stateNum';";
 
+    $cityResult = $mysqli->query($sqlFindCity);
+    if (!$cityResult) {
+        echo $mysqli->error;
+        $mysqli->close();
+        exit();
+    }
 
+    if ($cityResult->num_rows == 0) {
+        $insert = "INSERT INTO city (name, state_id) VALUES ('$city', $stateNum);";
+        $mysqli->query($insert);
+
+        $sqlFindCity = "SELECT * FROM city WHERE name = '$city' AND state_id = '$stateNum';";
+        $cityResult = $mysqli->query($sqlFindCity);
+    }
+    $cityID = $cityResult->fetch_assoc();
+    $cityNum = $cityID['id'];
+
+    $date = $_POST['date'];
+    $desc = $_POST['desc'];
+    $insertSub = "INSERT INTO submission (date, description, file_name, city_id, state_id, user_id)
+                    VALUES ('$date', '$desc', '$dst', $cityNum, $stateNum, $userID);";
+
+    $mysqli->query($insertSub);
+    header("Refresh:0");
+}
+
+function delSub ($f){
+    $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $mysqli2->query("DELETE FROM submission WHERE file_name = '" . $f . "';");
+    $mysqli2->close();
+}
+
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -66,73 +103,55 @@ if(empty($_FILES["image_up"])) {
 
         <hr>
 
-        <div class="post-container">
-            <div class="post-header">
-                <span class="user-name">User: Alejandro Martinez</span>
-                <span class="state-name">Location: Seattle, Washington</span>
-                <span class="post-date">Date: June 2023</span>
-                <span class="todo-remove oi oi-circle-x" title="Remove"></span>
-            </div>
-            <div class="post-body">
-                <img class="user-image" src="usr_img/Washington.jpg" alt="Alejandro in front of the Space Needle">
-                <div class="post-description">
-                    <p class="user-description">A spontanious 2 day trip to Seattle, Washington!</p>
+        <?php while ($sub = $submissionResult->fetch_assoc()) : ?>
+            <div class="post-container">
+                <div class="post-header">
+                    <span class="user-name">User: <?php echo $sub['first'] . ' ' .  $sub['last']; ?></span>
+                    <span class="state-name">Location: <?php echo $sub['city'] . ", " . $sub['state']; ?></span>
+                    <span class="post-date">Date: <?php echo $sub['date']; ?></span>
+                    <?php if ($sub['id'] == $userID) : ?>
+                        <span class="todo-remove oi oi-circle-x" title="Remove"></span>
+                        <!-- <?php delSub($sub['file'])?> -->
+                    <?php endif; ?>
+                </div>
+                <div class="post-body">
+                    <img class="user-image" src="<?php echo $sub['file']; ?>" alt=" <?php echo $sub['first'] . ' ' . $sub['last'] . ' uploaded picture'; ?>">
+                    <div class="post-description">
+                        <p class="user-description"> <?php echo $sub['des']; ?></p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="post-container">
-            <div class="post-header">
-                <span class="user-name">User: Alejandro Martinez</span>
-                <span class="state-name">Location: San Diego, California</span>
-                <span class="post-date">Date: April 2021</span>
-                <span class="todo-remove oi oi-circle-x" title="Remove"></span>
-            </div>
-            <div class="post-body">
-                <img class="user-image" src="usr_img/California.jpg" alt="Alejandro and friends at the beach">
-                <div class="post-description">
-                    <p class="user-description">Weekend get away with friends! We drove down to San Diego and explored the
-                        beaches and city!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="post-container">
-            <div class="post-header">
-                <span class="user-name">User: Alejandro Martinez</span>
-                <span class="state-name">Location: San Diego, California</span>
-                <span class="post-date">Date: April 2021</span>
-                <span class="todo-remove oi oi-circle-x" title="Remove"></span>
-            </div>
-            <div class="post-body">
-                <img class="user-image" src="usr_img/California.jpg" alt="Alejandro and friends at the beach">
-                <div class="post-description">
-                    <p class="user-description">Weekend get away with friends! We drove down to San Diego and explored the
-                        beaches and city!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="post-container">
-            <div class="post-header">
-                <span class="user-name">User: Alejandro Martinez</span>
-                <span class="state-name">Location: Liberty Island, New York</span>
-                <span class="post-date">Date: July 2018</span>
-                <span class="todo-remove oi oi-circle-x" title="Remove"></span>
-            </div>
-            <div class="post-body">
-                <img class="user-image" src="usr_img/New_York.jpeg" alt="Statue of Liberty">
-                <div class="post-description">
-                    <p class="user-description">Heres a picture I took of the statue of liberty while on a boat ride to the
-                        island! It was a fun trip!</p>
-                </div>
-            </div>
-        </div>
+        <?php endwhile; ?>
     </div>
 
-    <button type="button" class="btn btn-primary" id="upload-button" data-toggle="modal" data-target="#uploadModal">
-        + Add a Memory +
-    </button>
+    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) : ?>
+        <button type="button" class="btn btn-primary" id="upload-button" data-toggle="modal" data-target="#uploadModal">
+            + Add a Memory +
+        </button>
+    <?php endif; ?>
+
+    <!-- Credit to https://bestjquery.com/tutorial/pagination/demo216/ -->
+    <nav class="pagination-outer" aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item <?php if ($curr_page <= 1) {
+                                        echo 'disabled';
+                                    } ?>">
+                <a href="<?php $_GET['page'] = $curr_page - 1;
+                            echo $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET); ?>" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href=""><?php echo $curr_page; ?></a></li>
+            <li class="page-item <?php if ($curr_page >= $fin_page) {
+                                        echo 'disabled';
+                                    } ?>">
+                <a href="<?php $_GET['page'] = $curr_page + 1;
+                            echo $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET); ?>" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -142,7 +161,7 @@ if(empty($_FILES["image_up"])) {
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form id="upload-form" action="<?php echo $url; ?>" method="POST" enctype="multipart/form-data">
+                    <form id="upload-form" action="<?php echo $url; ?>" method="POST" enctype="multipart/form-data">
                         <div class="upload-form-group">
                             <label for="picture-upload">Select image to upload</label>
                             <input type="file" class="form-control" name="image_up" id="picture-upload" accept="image/png, image/jpeg, image/jpg" required>

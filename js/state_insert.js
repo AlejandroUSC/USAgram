@@ -52,24 +52,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Check if user is logged in or not - display modal accordingly
-document.getElementById('upload-button').addEventListener('click', function () {
-    const button = this;
-    const isLoggedIn = checkUserLoggedIn(); // Needs
+// document.getElementById('upload-button').addEventListener('click', function () {
+//     const button = this;
+//     const isLoggedIn = checkUserLoggedIn(); // Needs
 
-    if (!isLoggedIn) {
-        button.setAttribute('data-target', '#loginRegisterModal');
-        document.getElementsByName('data-target').textContent = ""
-        $('#loginRegisterModal').modal('show');
-    } else {
-        button.setAttribute('data-target', '#uploadModal');
-        $('#uploadModal').modal('show');
-    }
-});
+//     if (!isLoggedIn) {
+//         button.setAttribute('data-target', '#loginRegisterModal');
+//         document.getElementsByName('data-target').textContent = ""
+//         $('#loginRegisterModal').modal('show');
+//     } else {
+//         button.setAttribute('data-target', '#uploadModal');
+//         $('#uploadModal').modal('show');
+//     }
+// });
 
-// To Be Implemented during Backend
-function checkUserLoggedIn() {
-    return true; 
-}
+// // To Be Implemented during Backend
+// function checkUserLoggedIn() {
+//     return true; 
+// }
 
 // // Handle with backend
 // document.querySelector('#upload-form').onsubmit = () => {
@@ -148,16 +148,16 @@ function checkUserLoggedIn() {
 // };
 
 
-// Remove User Content
-// To be finished when doing backend
-function bindRemoveBtns() {
-    const buttons = document.querySelectorAll(".todo-remove")
+// // Remove User Content
+// // To be finished when doing backend
+// function bindRemoveBtns() {
+//     const buttons = document.querySelectorAll(".todo-remove")
 
-    for (btn of buttons) {
-        btn.onclick = function () {
-            this.parentElement.parentElement.remove()
-        }
-    }
-}
+//     for (btn of buttons) {
+//         btn.onclick = function () {
+//             this.parentElement.parentElement.remove()
+//         }
+//     }
+// }
 
-bindRemoveBtns()
+// bindRemoveBtns()
