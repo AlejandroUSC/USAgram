@@ -15,8 +15,7 @@
                 <?php if (!isset($_SESSION['logged_in'])) : ?>
                     <a class="nav-link" id="nav-login" href="login.php">Login</a>
                 <?php else : ?>
-                    <a class="nav-link" id="nav-login" href="main.php">Logout</a>
-                    <?php session_destroy(); ?>
+                    <a class="nav-link" id="nav-login" href="logout.php">Logout</a>
                 <?php endif; ?>
             </li>
         </ul>

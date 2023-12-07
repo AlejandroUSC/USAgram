@@ -3,10 +3,12 @@ require "config/config.php";
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
     header('Location: main.php');
+} else if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] == true) {
+    session_destroy();
 } else {
     if (isset($_POST['log_email']) && isset($_POST['log_pass'])) {
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
+        echo 'here';
         if ($mysqli->connect_errno) {
             echo $mysqli->connect_error;
             exit();
@@ -18,12 +20,13 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         $sqlSelect = "SELECT * FROM user WHERE email = '$email' AND password = '$pass';";
 
         $result = $mysqli->query($sqlSelect);
-
+        echo 'here2';
         if (!$result) {
             echo $mysqli->error;
             $mysqli->close();
             exit();
         }
+
         $mysqli->close();
 
         if ($result->num_rows == 1) {
@@ -34,6 +37,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         } else {
             $error = "Invalid Email or Password.";
         }
+        echo 'here3';
     }
 }
 
@@ -100,7 +104,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         <div class="modal-dialog d-flex justify-content-center">
             <div class="modal-content w-75">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Sign in</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Sign Up</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -108,26 +112,26 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
                     <form action="register_confirm.php" method="POST" id="reg-form">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-fname">First Name</label>
-                            <input type="text" id="reg-fname" name="fname" class="form-control" placeholder="John" required>
+                            <input type="text" id="reg-fname" name="fname" class="form-control" required>
                             <small id="reg-fn-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-lname">Last Name</label>
-                            <input type="text" id="reg-lname" name="lname" class="form-control" placeholder="Smith" required>
+                            <input type="text" id="reg-lname" name="lname" class="form-control" required>
                             <small id="reg-ln-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-email">Email address</label>
-                            <input type="email" id="reg-email" name="remail" class="form-control" placeholder="jsmith@gmail.com" required>
+                            <input type="email" id="reg-email" name="remail" class="form-control"  required>
                             <small id="reg-email-error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="reg-password">Password</label>
-                            <input type="password" id="reg-password" name="rpass" class="form-control" placeholder="*******" required>
+                            <input type="password" id="reg-password" name="rpass" class="form-control" required>
                             <small id="reg-pass-error" class="form-text text-danger"></small>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                     </form>
                 </div>
             </div>

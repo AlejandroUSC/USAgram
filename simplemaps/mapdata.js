@@ -68,233 +68,233 @@ var simplemaps_usmap_mapdata={
   state_specific: {
     HI: {
       name: "Hawaii",
-      url: "state.php?state=Hawaii"
+      url: "state.php?state=Hawaii&page=1"
     },
     AK: {
       name: "Alaska",
-      url: "state.php?state=Alaska"
+      url: "state.php?state=Alaska&page=1"
     },
     FL: {
       name: "Florida",
-      url: "state.php?state=Florida"
+      url: "state.php?state=Florida&page=1"
     },
     NH: {
       name: "New Hampshire",
-      url: "state.php?state=New_Hampshire"
+      url: "state.php?state=New_Hampshire&page=1"
     },
     VT: {
       name: "Vermont",
-      url: "state.phpstate=Vermont"
+      url: "state.phpstate=Vermont&page=1"
     },
     ME: {
       name: "Maine",
-      url: "state.php?state=Maine"
+      url: "state.php?state=Maine&page=1"
     },
     RI: {
       name: "Rhode Island",
-      url: "state.php?state=Rhode_Island"
+      url: "state.php?state=Rhode_Island&page=1"
     },
     NY: {
       name: "New York",
-      url: "state.php?state=New_York"
+      url: "state.php?state=New_York&page=1"
     },
     PA: {
       name: "Pennsylvania",
-      url: "state.php?state=Pennsylvania"
+      url: "state.php?state=Pennsylvania&page=1"
     },
     NJ: {
       name: "New Jersey",
-      url: "state.php?state=New_Jersey"
+      url: "state.php?state=New_Jersey&page=1"
     },
     DE: {
       name: "Delaware",
-      url: "state.php?state=Delaware"
+      url: "state.php?state=Delaware&page=1"
     },
     MD: {
       name: "Maryland",
-      url: "state.php?state=Maryland"
+      url: "state.php?state=Maryland&page=1"
     },
     VA: {
       name: "Virginia",
-      url: "state.php?state=Virginia"
+      url: "state.php?state=Virginia&page=1"
     },
     WV: {
       name: "West Virginia",
-      url: "state.php?state=West_Virginia"
+      url: "state.php?state=West_Virginia&page=1"
     },
     OH: {
       name: "Ohio",
-      url: "state.php?state=Ohio"
+      url: "state.php?state=Ohio&page=1"
     },
     IN: {
       name: "Indiana",
-      url: "state.php?state=Indiana"
+      url: "state.php?state=Indiana&page=1"
     },
     IL: {
       name: "Illinois",
-      url: "state.php?state=Illinois"
+      url: "state.php?state=Illinois&page=1"
     },
     CT: {
       name: "Connecticut",
-      url: "state.php?state=Connecticut"
+      url: "state.php?state=Connecticut&page=1"
     },
     WI: {
       name: "Wisconsin",
-      url: "state.php?state=Wisconsin"
+      url: "state.php?state=Wisconsin&page=1"
     },
     NC: {
       name: "North Carolina",
-      url: "state.php?state=North_Carolina"
+      url: "state.php?state=North_Carolina&page=1"
     },
     DC: {
-      name: "District of Columbia",
+      name: "District of Columbia&page=1",
       hide: "yes",
-      url: "state.php?state=District_of_Columbia"
+      url: "state.php?state=District_of_Columbia&page=1"
     },
     MA: {
       name: "Massachusetts",
-      url: "state.php?state=Massachusetts"
+      url: "state.php?state=Massachusetts&page=1"
     },
     TN: {
       name: "Tennessee",
-      url: "state.php?state=Tennessee"
+      url: "state.php?state=Tennessee&page=1"
     },
     AR: {
       name: "Arkansas",
-      url: "state.php?state=Arkansas"
+      url: "state.php?state=Arkansas&page=1"
     },
     MO: {
       name: "Missouri",
-      url: "state.php?state=Missouri"
+      url: "state.php?state=Missouri&page=1"
     },
     GA: {
       name: "Georgia",
-      url: "state.php?state=Georgia"
+      url: "state.php?state=Georgia&page=1"
     },
     SC: {
       name: "South Carolina",
-      url: "state.php?state=South_Carolina"
+      url: "state.php?state=South_Carolina&page=1"
     },
     KY: {
       name: "Kentucky",
-      url: "state.php?state=Kentucky"
+      url: "state.php?state=Kentucky&page=1"
     },
     AL: {
       name: "Alabama",
-      url: "state.php?state=Alabama"
+      url: "state.php?state=Alabama&page=1"
     },
     LA: {
       name: "Louisiana",
-      url: "state.php?state=Louisiana"
+      url: "state.php?state=Louisiana&page=1"
     },
     MS: {
       name: "Mississippi",
-      url: "state.php?state=Mississippi"
+      url: "state.php?state=Mississippi&page=1"
     },
     IA: {
       name: "Iowa",
-      url: "state.php?state=Iowa"
+      url: "state.php?state=Iowa&page=1"
     },
     MN: {
       name: "Minnesota",
-      url: "state.php?state=Minnesota"
+      url: "state.php?state=Minnesota&page=1"
     },
     OK: {
       name: "Oklahoma",
-      url: "state.php?state=Oklahoma"
+      url: "state.php?state=Oklahoma&page=1"
     },
     TX: {
       name: "Texas",
-      url: "state.php?state=Texas"
+      url: "state.php?state=Texas&page=1"
     },
     NM: {
       name: "New Mexico",
-      url: "state.php?state=New_Mexico"
+      url: "state.php?state=New_Mexico&page=1"
     },
     KS: {
       name: "Kansas",
-      url: "state.php?state=Kansas"
+      url: "state.php?state=Kansas&page=1"
     },
     NE: {
       name: "Nebraska",
-      url: "state.php?state=Nebraska"
+      url: "state.php?state=Nebraska&page=1"
     },
     SD: {
       name: "South Dakota",
-      url: "state.php?state=South_Dakota"
+      url: "state.php?state=South_Dakota&page=1"
     },
     ND: {
       name: "North Dakota",
-      url: "state.php?state=North_Dakota"
+      url: "state.php?state=North_Dakota&page=1"
     },
     WY: {
       name: "Wyoming",
-      url: "state.php?state=Wyoming"
+      url: "state.php?state=Wyoming&page=1"
     },
     MT: {
       name: "Montana",
-      url: "state.php?state=Montana"
+      url: "state.php?state=Montana&page=1"
     },
     CO: {
       name: "Colorado",
-      url: "state.php?state=Colorado"
+      url: "state.php?state=Colorado&page=1"
     },
     UT: {
       name: "Utah",
-      url: "state.php?state=Utah"
+      url: "state.php?state=Utah&page=1"
     },
     AZ: {
       name: "Arizona",
-      url: "state.php?state=Arizona"
+      url: "state.php?state=Arizona&page=1"
     },
     NV: {
       name: "Nevada",
-      url: "state.php?state=Nevada"
+      url: "state.php?state=Nevada&page=1"
     },
     OR: {
       name: "Oregon",
-      url: "state.php?state=Oregon"
+      url: "state.php?state=Oregon&page=1"
     },
     WA: {
       name: "Washington",
-      url: "state.php?state=Washington"
+      url: "state.php?state=Washington&page=1"
     },
     CA: {
       name: "California",
-      url: "state.php?state=California"
+      url: "state.php?state=California&page=1"
     },
     MI: {
       name: "Michigan",
-      url: "state.php?state=Michigan"
+      url: "state.php?state=Michigan&page=1"
     },
     ID: {
       name: "Idaho",
-      url: "state.php?state=Idaho"
+      url: "state.php?state=Idaho&page=1"
     },
     GU: {
       name: "Guam",
       hide: "yes",
-      url: "state.php?state=guam"
+      url: "state.php?state=guam&page=1"
     },
     VI: {
       name: "Virgin Islands",
       hide: "yes",
-      url: "state.php?state=virgin-islands"
+      url: "state.php?state=virgin-islands&page=1"
     },
     PR: {
       name: "Puerto Rico",
       hide: "yes",
-      url: "state.php?state=puerto-rico"
+      url: "state.php?state=puerto-rico&page=1"
     },
     MP: {
       name: "Northern Mariana Islands",
       hide: "yes",
-      url: "state.php?state=northern-mariana-islands"
+      url: "state.php?state=northern-mariana-islands&page=1"
     },
     AS: {
       name: "American Samoa",
       hide: "yes",
-      url: "state.php?state=american-samoa"
+      url: "state.php?state=american-samoa&page=1"
     }    
   },
   locations: {},

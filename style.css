@@ -195,6 +195,10 @@ body {
     margin: 0;
 }
 
+.form-control {
+    margin-bottom: 10px;
+}
+
 #upload-button {
     justify-content: center;
     width: 30vw;
