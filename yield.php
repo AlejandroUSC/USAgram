@@ -22,13 +22,13 @@ if (!$stateResult) {
 $stateID = $stateResult->fetch_assoc();
 $stateNum = $stateID['id'];
 
-$sqlSelectStateSubmissions = "SELECT user.id, user.first, user.last, submission.date, city.name AS city, state.name AS state, submission.description AS des, submission.file_name AS file
+$sqlSelectStateSubmissions = "SELECT submission.id AS ID, user.id AS userID, user.first, user.last, submission.date, city.name AS city, state.name AS state, submission.description AS des, submission.file_name AS file
 FROM `submission` 
 LEFT JOIN user ON submission.user_id = user.id
 LEFT JOIN city ON submission.city_id = city.id
 LEFT JOIN state ON submission.state_id = state.id
 WHERE submission.state_id = '$stateNum'
-ORDER BY DES;";
+ORDER BY submission.id DESC;";
 
 $submissionResult = $mysqli->query($sqlSelectStateSubmissions);
 if (!$submissionResult) {
@@ -65,3 +65,10 @@ if (!$submissionResult) {
 
 
 ?>
+<!-- 
+function delSub($i){
+    $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $mysqli2->query("DELETE FROM submission WHERE submission.id = " . $i . ";");
+    header("Refresh:0");
+    $mysqli2->close();
+} -->

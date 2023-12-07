@@ -7,8 +7,9 @@ if ($mysqli->connect_errno) {
 }
 $mysqli->set_charset('utf8');
 
-require "yield.php";
+require "yield.php"; // Displays submissions
 
+// Below will create and post a submission
 $em = $_SESSION['email'];
 $emailSQL = "SELECT * FROM `user` WHERE email = '$em';";
 $person = $mysqli->query($emailSQL);
@@ -57,14 +58,18 @@ if (isset($_POST['city'])) {
     $mysqli->query($insertSub);
     header("Refresh:0");
 }
+$mysqli->close();
 
-function delSub ($f){
+// POST CALL FOR DELETING SUBMISSIONS
+if(isset($_POST['submissionID']) && trim($_POST['submissionID']) != ""){
     $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    $mysqli2->query("DELETE FROM submission WHERE file_name = '" . $f . "';");
+    $submissionID = $_POST['submissionID'];
+    $sqlDel = "DELETE FROM submission WHERE submission.id = " . $submissionID . ";";
+    // echo $sqlDel;
+    $mysqli2->query($sqlDel);
     $mysqli2->close();
 }
 
-$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -109,9 +114,8 @@ $mysqli->close();
                     <span class="user-name">User: <?php echo $sub['first'] . ' ' .  $sub['last']; ?></span>
                     <span class="state-name">Location: <?php echo $sub['city'] . ", " . $sub['state']; ?></span>
                     <span class="post-date">Date: <?php echo $sub['date']; ?></span>
-                    <?php if ($sub['id'] == $userID) : ?>
-                        <span class="todo-remove oi oi-circle-x" title="Remove"></span>
-                        <!-- <?php delSub($sub['file'])?> -->
+                    <?php if ($sub['userID'] == $userID) : ?>
+                        <span class="todo-remove oi oi-circle-x del-button" title="Remove" data-submission-id="<?php echo $sub['ID']; ?>"></span>
                     <?php endif; ?>
                 </div>
                 <div class="post-body">
@@ -211,9 +215,32 @@ $mysqli->close();
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/state_insert.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".del-button").on("click", function() {
+                var submissionID = $(this).data("submission-id");
+                console.log("in ajax: " . submissionID);
+                // Perform the AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: window.location.href,
+                    data: {
+                        submissionID: submissionID
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
