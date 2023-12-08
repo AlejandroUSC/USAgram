@@ -65,7 +65,3 @@ if (!$submissionResult) {
 
 
 ?>
-<!-- 
-function delSub($i){
-    
-} -->
