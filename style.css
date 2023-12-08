@@ -297,3 +297,7 @@ body {
 .pagination li.active a.page-link:after{
     width: 100%;
 }
+
+.edit-button {
+    cursor: pointer;
+}
