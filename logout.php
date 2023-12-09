@@ -10,6 +10,7 @@ session_destroy();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thank you for visiting up on USAgram! We hope you had a lovely time and will visit back soon! You've been successfully logged out.">
     <title>Logged Out</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -18,7 +19,7 @@ session_destroy();
 
 <body class="login-body">
 
-    <?php include 'nav.php'; ?>
+    <?php include 'required/nav.php'; ?>
 
     <div class="container cust-container">
 

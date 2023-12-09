@@ -57,6 +57,7 @@ if (
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thank you for signing up on USAgram! Please hold while we redirect you to the next available page.">
     <title>Sign Up Confirmation</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -65,16 +66,16 @@ if (
 
 <body class="login-body">
 
-    <?php include 'nav.php'; ?>
+    <?php include 'required/nav.php'; ?>
 
     <div class="container cust-container">
 
         <?php if (isset($error) && trim($error) != '') : ?>
             <div class="text-danger"><?php echo $error; ?> <br>
-                Click <a href="#" onclick="redirectLogin(); return false;"> here </a> to redirect home or wait 5 seconds.</div>
+                Click <a href="#" onclick="redirectTimer(); return false;"> here </a> to redirect back home or wait 5 seconds.</div>
         <?php else : ?>
             <div class="text-success"><?php echo $fname . " " . $lname; ?> your account was successfully registered.<br>
-                Click <a href="#" onclick="redirectHome(); return false;"> here </a> to redirect home or wait 5 seconds.</div>
+                Click <a href="#" onclick="redirectLogin(); return false;"> here </a> to redirect back or wait 5 seconds.</div>
 
         <?php endif; ?>
 

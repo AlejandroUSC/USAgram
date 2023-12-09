@@ -59,6 +59,7 @@ if (isset($_POST['desc'], $_POST['submission_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Editting your submission. Put some effort in it! You got this! No matter what you change, it'll still be perfect to us <3">
     <title>Editing Post</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -67,7 +68,7 @@ if (isset($_POST['desc'], $_POST['submission_id'])) {
 
 <body class="body">
 
-    <?php include 'nav.php'; ?>
+    <?php include 'required/nav.php'; ?>
 
     <div class="post-container">
         <div class="post-header">

@@ -7,69 +7,12 @@
     }
     $mysqli->set_charset('utf8');
 
-    require "yield.php"; // Displays submissions
+    require "required/yield.php"; // Displays submissions
 
-    // Below will create and post a submission
-    $em = $_SESSION['email'];
-    $emailSQL = "SELECT * FROM `user` WHERE email = '$em';";
-    $person = $mysqli->query($emailSQL);
-    $personData = $person->fetch_assoc();
-    $userID = $personData['id'];
+    require "required/create.php"; // Adds submissions
 
-    if (empty($_FILES["image_up"])) {
-        $error = "No file uploaded";
-    } else if ($_FILES["image_up"]['error'] > 0) {
-        $error = "File uploaded error " . $_FILES["image_up"]['error'];
-    } else {
-        $src = $_FILES['image_up']['tmp_name'];
-        $imgurl = $_FILES['image_up']['name'];
-        $dst = "usr_img/" . uniqid() . $imgurl;
-        $dst = preg_replace('/\s/', '_', $dst);
-
-        move_uploaded_file($src, $dst);
-    }
-    if (isset($_POST['city'])) {
-        $city = $_POST['city'];
-
-        $sqlFindCity = "SELECT * FROM city WHERE name = '$city' AND state_id = '$stateNum';";
-
-        $cityResult = $mysqli->query($sqlFindCity);
-        if (!$cityResult) {
-            echo $mysqli->error;
-            $mysqli->close();
-            exit();
-        }
-
-        if ($cityResult->num_rows == 0) {
-            $insert = "INSERT INTO city (name, state_id) VALUES ('$city', $stateNum);";
-            $mysqli->query($insert);
-
-            $sqlFindCity = "SELECT * FROM city WHERE name = '$city' AND state_id = '$stateNum';";
-            $cityResult = $mysqli->query($sqlFindCity);
-        }
-        $cityID = $cityResult->fetch_assoc();
-        $cityNum = $cityID['id'];
-
-        $date = $_POST['date'];
-        $desc = $_POST['desc'];
-        $insertSub = "INSERT INTO submission (date, description, file_name, city_id, state_id, user_id)
-                        VALUES ('$date', '$desc', '$dst', $cityNum, $stateNum, $userID);";
-
-        $mysqli->query($insertSub);
-        header("Refresh:0");
-    }
-    $mysqli->close();
-
-    // POST CALL FOR DELETING SUBMISSIONS
-    if (isset($_POST['submissionID']) && trim($_POST['submissionID']) != "") {
-        $mysqli2 = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $submissionID = $_POST['submissionID'];
-        $sqlDel = "DELETE FROM submission WHERE submission.id = " . $submissionID . ";";
-        // echo $sqlDel;
-        $mysqli2->query($sqlDel);
-        $mysqli2->close();
-    }
-
+    require "required/delete.php"; // Deletes submissions
+    
     ?>
 
     <!DOCTYPE html>
@@ -78,18 +21,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The beautiful US state, <?php echo $sub['state']; ?>! Have you visited here before? Lovely! Come share your experience! Never been? Doesn't matter! Come look at what others have done!">
         <title>US'Agram</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        
         <!-- Use open-iconic from lecture example -->
         <link href="lib/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
     </head>
 
-    <!-- Template grabbed and modified from this site -->
-    <!-- https://mdbootstrap.com/docs/standard/extended/modal-form/#example1 -->
-
     <body>
-        <?php include 'nav.php'; ?>
+        <?php include 'required/nav.php'; ?>
 
         <div id="content">
 
@@ -111,10 +53,9 @@
             <?php while ($sub = $submissionResult->fetch_assoc()) : ?>
                 <div class="post-container">
                     <div class="post-header">
-                        <!-- <?php echo json_encode($sub) ?> -->
                         <span class="user-name">User: <?php echo $sub['first'] . ' ' .  $sub['last']; ?></span>
-                        <span class="state-name">Location: <?php echo $sub['city'] . ", " . $sub['state']; ?></span>
-                        <span class="post-date">Date: <?php echo $sub['date']; ?></span>
+                        <span class="state-name">Location: <?php echo $sub['city'] . ", " . str_replace('_', ' ', $sub['state']); ?></span>
+                        <span class="post-date">Date: <?php echo date('Y-m-d',strtotime($sub['date'])); ?></span>
                         <?php if ($sub['userID'] == $userID) : ?>
                             <svg class="edit-button" data-submission-id="<?php echo $sub['ID']; ?>" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />

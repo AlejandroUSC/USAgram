@@ -7,6 +7,8 @@ require "config/config.php"
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An online spin off of Google Maps and Instagram. A place where one can share their pictures and experience
+      about a time they visited one of the US States!">
   <title>About</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -14,7 +16,7 @@ require "config/config.php"
 
 <body>
 
-  <?php include 'nav.php'; ?>
+  <?php include 'required/nav.php'; ?>
 
 
   <div class="img-container">

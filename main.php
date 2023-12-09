@@ -9,7 +9,7 @@ if (
 ) {
   $error = "Please fill out all required fields.";
 } else {
-  // All required fields present.
+
   $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
   if ($mysqli->connect_errno) {
@@ -63,6 +63,7 @@ if (
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="USAgram! Explore the USA and share your memories with others online! Had a fun time at any of the US states? Upload a picture and share your story with others!">
   <title>US'Agram</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -73,7 +74,7 @@ if (
 
 <body>
 
-  <?php include 'nav.php'; ?>
+  <?php include 'required/nav.php'; ?>
 
   <div class="div-body">
     <div id="map"></div>
@@ -89,9 +90,6 @@ if (
       </div>
     </div>
   </div>
-
-
-
 
   <script src="js/script.js"></script>
 

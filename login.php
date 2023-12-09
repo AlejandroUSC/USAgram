@@ -50,20 +50,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Come join the fun at USAgram! Register now and share your fun experiences! We'll never share your information with anyone.">
     <title>Login Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
-
-<!-- https://getbootstrap.com/docs/4.3/components/forms/? -->
-<!-- https://mdbootstrap.com/docs/standard/extended/modal-form/#example1 -->
-
-<!-- Template used for this. has modifications -->
-
 <body class="login-body">
 
-    <?php include 'nav.php'; ?>
+    <?php include 'required/nav.php'; ?>
 
 
     <div class="container cust-container">
