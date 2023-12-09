@@ -122,7 +122,7 @@
                             </div>
                             <div class="upload-form-group">
                                 <label for="time">When was this picture taken?</label>
-                                <input class="form-control" name="date" type="date" id="time" name="date" required>
+                                <input class="form-control" name="date" type="date" id="time" required>
                             </div>
                             <div class="upload-form-group">
                                 <label for="description">Description (300 characters or less)</label>
